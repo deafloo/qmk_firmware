@@ -1,0 +1,41 @@
+{
+    "manufacturer": "Florian",
+    "keyboard_name": "multipad",
+    "maintainer": "deafloo",
+    "bootloader": "rp2040",
+    "diode_direction": "COL2ROW",
+    "processor": "RP2040",
+    "url": "",
+    "usb": {
+        "device_version": "1.0.0",
+        "pid": "0x23B0",
+        "vid": "0xC1ED"
+    },
+    "features": {
+        "command": false,
+        "console": false,
+        "extrakey": true,
+        "nkro": true
+    },
+    "matrix_pins": {
+        "cols": ["GP23", "GP7", "GP19", "GP5"],
+        "rows": ["GP20", "GP18", "GP11", "GP9", "GP8"]
+    },
+    "layouts": {
+        "LAYOUT_numpad_5x4": {
+            "layout": [
+                                                                    { "label": "f1", "matrix": [0,0], "x": 1, "y": 0, "w": 0.5, "h": 0.5 },      { "label": "f2", "matrix": [0,1], "x": 1.8, "y": 0, "w": 0.5, "h": 0.5 },      { "label": "f3", "matrix": [0,2], "x": 2.6, "y": 0, "w": 0.5, "h": 0.5 },
+                                                                    { "label": "7", "matrix": [1, 0], "x": 1, "y": 0.5, "w": 1 },      { "label": "8", "matrix": [1, 1], "x": 2, "y": 0.5, "w": 1 },      { "label": "9", "matrix": [1, 2], "x": 3, "y": 0.5, "w": 1 },
+                                                                    { "label": "4", "matrix": [2, 0], "x": 1, "y": 1.5, "w": 1 },      { "label": "5", "matrix": [2, 1], "x": 2, "y": 1.5, "w": 1 },      { "label": "6", "matrix": [2, 2], "x": 3, "y": 1.5, "w": 1 },      { "label": "Tab", "matrix": [2, 3], "x": 4, "y": 1.5, "w": 1 },
+    { "label": "ENC", "matrix": [3,0], "x": 0, "y": 2.5, "w": 1 },  { "label": "1", "matrix": [3, 1], "x": 1, "y": 2.5, "w": 1 },      { "label": "2", "matrix": [3, 2], "x": 2, "y": 2.5, "w": 1 },      { "label": "3", "matrix": [3, 3], "x": 3, "y": 2.5, "w": 1 },
+                                                                    { "label": "0", "matrix": [4, 0], "x": 0.75,"y": 3.5, "w": 1.25 }, { "label": ".", "matrix": [4, 1], "x": 2, "y": 3.5, "w": 1 },      { "label": ",", "matrix": [4, 2], "x": 3, "y": 3.5, "w": 1 },      { "label": "Ent", "matrix": [4, 3], "x": 4, "y": 3, "h": 2 } 
+            ]
+        }
+    },
+    "rgblight": {
+        "led_count": 14,
+        "animations": {
+            "rainbow_swirl": true
+        }
+    }
+}
