@@ -30,17 +30,8 @@
 * OLED options
 * see https://docs.qmk.fm/#/feature_oled_driver?id=supported-hardware
 */
-#define OLED_DISPLAY_ADDRESS 0x7B
-#define OLED_DISPLAY_CUSTOM
-#define OLED_DISPLAY_WIDTH 64
-#define OLED_DISPLAY_HEIGHT 48
-#define OLED_MATRIX_SIZE 384
-#define OLED_BLOCK_TYPE uint16_t
-#define OLED_BLOCK_COUNT 16
-#define OLED_BLOCK_SIZE 24
-#define OLED_COM_PINS COM_PINS_SEQ
-#define OLED_SOURCE_MAP { 0, 1, 2, 3, 4, 5, 6, 7 }
-#define OLED_TARGET_MAP { 3, 7, 2, 6, 1, 5, 0, 4 }
+#define OLED_DISPLAY_ADDRESS 0x3C
+#define OLED_DISPLAY_64x48
 
 /*
 * Encoder options

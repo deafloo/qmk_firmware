@@ -14,9 +14,11 @@
 // Layer names don't all need to be of the same
 // length, and you can also skip them entirely
 // and just use numbers.
-#define NUMPAD 0
-#define MATH 1
-#define MAKRO 2
+enum layer_names{
+    NUMPAD,
+    MATH,
+    MAKRO
+};
 
 // Switch behavior
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -115,6 +117,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 // OLED behavior
 #ifdef OLED_ENABLE
+oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_180; }
 bool oled_task_user(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
