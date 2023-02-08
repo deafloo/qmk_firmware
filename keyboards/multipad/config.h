@@ -23,6 +23,9 @@
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 4
 
+#define BOOTMAGIG_LITE_ROW 0
+#define BOOTMAGIC_LITE_COLUMN 0
+
 /*
 * OLED options
 * see https://docs.qmk.fm/#/feature_oled_driver?id=supported-hardware
@@ -63,7 +66,7 @@
 #define RGB_MATRIX_LED_COUNT DRIVER_LED_TOTAL
 
 
-#define BOOTMAGIG_LITE_ROW 0
-#define BOOTMAGIC_LITE_COLUMN 0
-
+/*
+* RP2040 specific stuff
+*/
 #define RP2040_FLASH_IS25LP080

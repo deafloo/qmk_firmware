@@ -1,5 +1,5 @@
 #include QMK_KEYBOARD_H
-
+#include <keymap_german.h>
 // Helpful defines
 //#define GRAVE_MODS  (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT)|MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI)|MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
 
@@ -18,10 +18,11 @@
 #define MATH 1
 #define MAKRO 2
 
-
+// Switch behavior
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
-     *   [1][2][3]
+     *  Physical Layout
+     *   [t1][t2][t3]
      *    ┌───┬───┬───┬───┐
      *    │ 7 │ 8 │ 9 │DSP│
      *    ├───┼───┼───┼───│
@@ -31,30 +32,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *└─┬─┴───┼───┼───┤Ent│
      *  │  0  │   │ , │   │
      *  └─────┴───┴───┴───┘
+     * 
+     *  Logical Layout
+     *        [2][3][1]
+     *    ┌───┬───┬───┬───┐
+     *    │ 7 │ 8 │ 9 │   │
+     *    ├───┼───┼───┼───│
+     *    │ 4 │ 5 │ 6 │Fnc│
+     *    ├───┼───┼───┼───┤
+     *    │ 1 │ 2 │ 3 │ENC│
+     *  ┌─┴───┼───┼───┼───┤
+     *  │  0  │ . │ , │Ent│
+     *  └─────┴───┴───┴───┘
      */
     [NUMPAD] = LAYOUT_numpad_5x4(
-        RGB_TOG, RGB_VAI, KC_CALC,                  \
+        RGB_VAI, RGB_TOG, KC_CALC,                  \
             KC_P7,    KC_P8,    KC_P9,              \
             KC_P4,    KC_P5,    KC_P6,    KC_TAB,   \
-     TG(1), KC_P1,    KC_P2,    KC_P3,              \
-            KC_P0,    KC_PDOT,  KC_PCMM,  KC_PENT
+            KC_P1,    KC_P2,    KC_P3,    TO(MATH),    \
+            KC_P0,    KC_DOT,  KC_PDOT,  KC_PENT
     ),
     [MATH] = LAYOUT_numpad_5x4(
         _______, _______, _______,
             _______,    _______,    _______,
             _______,    _______,    _______,    _______,
-   _______, _______,    _______,    _______,    
+            _______,    _______,    _______,    TO(MAKRO),    
             _______,    _______,    _______,    _______
     ),
     [MAKRO] = LAYOUT_numpad_5x4(
         _______, _______, _______,
             _______,    _______,    _______,
             _______,    _______,    _______,    _______,
-   _______, _______,    _______,    _______,    
+            _______,    _______,    _______,    TO(NUMPAD),    
             _______,    _______,    _______,    _______
     )
 };
 
+
+// LED behavior
 led_config_t g_led_config = { 
 {   // Key Matrix to LED index
     {NO_LED, NO_LED, NO_LED},
@@ -78,3 +93,46 @@ led_config_t g_led_config = {
     4,1,4,4
 }
 };
+
+
+// Encoder behavior
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    switch(get_highest_layer(layer_state|default_layer_state)) {
+        case NUMPAD:
+            clockwise ? tap_code(KC_VOLU):tap_code(KC_VOLD);
+            break;
+        case MATH:
+            clockwise ? rgblight_increase_val():rgblight_decrease_val();
+            break;
+        case MAKRO:
+            clockwise ? rgblight_increase_hue():rgblight_decrease_hue();
+            break;
+    }
+    return false;
+}
+
+
+
+// OLED behavior
+#ifdef OLED_ENABLE
+bool oled_task_user(void) {
+    // Host Keyboard Layer Status
+    oled_write_P(PSTR("Layer: "), false);
+
+    switch (get_highest_layer(layer_state)) {
+        case NUMPAD:
+            oled_write_P(PSTR("Default\n"), false);
+            break;
+        case MATH:
+            oled_write_P(PSTR("Math\n"), false);
+            break;
+        case MAKRO:
+            oled_write_P(PSTR("Makro\n"), false);
+            break;
+        default:
+            // Or use the write_ln shortcut over adding '\n' to the end of your string
+            oled_write_ln_P(PSTR("Undefined"), false);
+    }    
+    return false;
+}
+#endif
