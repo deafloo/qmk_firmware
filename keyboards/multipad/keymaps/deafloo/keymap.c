@@ -2,6 +2,7 @@
 #include <keymap_german.h>
 #include <color.h>
 #include "custom_colors.h"
+#include "custom_display.h"
 // Helpful defines
 //#define GRAVE_MODS  (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT)|MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI)|MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
 
@@ -220,23 +221,21 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_180; }
 bool oled_task_user(void) {
     // Host Keyboard Layer Status
-    oled_write_P(PSTR("Layer: "), false);
-
     switch (get_highest_layer(layer_state)) {
         case NUMPAD:
-            oled_write_P(PSTR("Default\n"), false);
+            oled_write_raw_P(numpad, sizeof(numpad));
             break;
         case MATH:
-            oled_write_P(PSTR("Math\n"), false);
+            oled_write_raw_P(math, sizeof(math));
             break;
         case MAKRO:
             oled_write_P(PSTR("Makro\n"), false);
             break;
         case ARROWS:
-            oled_write_P(PSTR("Movement\n"), false);
+            oled_write_raw_P(arrows, sizeof(arrows));
             break;
         case GAMING:
-            oled_write_P(PSTR("Gaming\n"), false);
+            oled_write_raw_P(gaming, sizeof(gaming));
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string

@@ -88,7 +88,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #        define OLED_BLOCK_SIZE (OLED_MATRIX_SIZE / OLED_BLOCK_COUNT) // 32 (compile time mathed)
 #    endif
 #    ifndef OLED_COM_PINS
-#        define OLED_COM_PINS COM_PINS_SEQ
+#        define OLED_COM_PINS COM_PINS_ALT
 #    endif
 #    ifndef OLED_SOURCE_MAP
 #        define OLED_SOURCE_MAP \

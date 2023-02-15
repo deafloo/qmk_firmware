@@ -33,9 +33,6 @@
         }
     },
     "rgblight": {
-        "led_count": 14,
-        "animations": {
-            "rainbow_swirl": true
-        }
+        "led_count": 14
     }
 }
