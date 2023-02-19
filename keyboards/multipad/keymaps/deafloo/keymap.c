@@ -218,7 +218,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 // OLED behavior
 #ifdef OLED_ENABLE
-oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_180; }
+oled_rotation_t oled_init_kb(oled_rotation_t rotation) { return OLED_ROTATION_180; }
 bool oled_task_user(void) {
     // Host Keyboard Layer Status
     switch (get_highest_layer(layer_state)) {
