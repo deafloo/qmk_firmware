@@ -31,7 +31,8 @@
 * see https://docs.qmk.fm/#/feature_oled_driver?id=supported-hardware
 */
 #define OLED_DISPLAY_ADDRESS 0x3C
-#define OLED_DISPLAY_64x48
+#define OLED_DISPLAY_64X48
+#define OLED_COLUMN_OFFSET 29 
 
 /*
 * Encoder options
